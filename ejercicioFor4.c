@@ -37,7 +37,19 @@ const float CONSUMO_RECURSO_3 = 1.7;
 const int PRODUCTOS_POR_CICLO = 5;
 const int ENERGIA_MINIMA_REQUERIDA = 25;
 
+#define MJS_INGRESE_ENERGIA "Ingrese energia: "
 #define MSJ_INGRESE_RECURSO_1 "Ingrese stock del recurso 1: "
+#define MSJ_INGRESE_RECURSO_2 "Ingrese stock del recurso 2: "
+#define MSJ_INGRESE_RECURSO_3 "Ingrese stock del recurso 3: "
+#define MSJ_INICIAR_PROD "Iniciando produccion"
+#define MSJ_CICLO_PROD "Ciclo de produccion finalizado"
+#define MSJ_FALTA_STOCK "Ciclo de produccion interrumpido por falta de stock"
+#define MSJ_ENERGIA_INSUFICIENTE "Cantidad de energia insuficiente"
+#define MSJ_PRODUCTOS_PRODUCIDOS "Cantidad de productos producidos: "
+#define MSJ_ENERGIA_REST "Energia restante: "
+#define MSJ_STOCK_REST_1 "Stock restante de recurso 1: "
+#define MSJ_STOCK_REST_2 "Stock restante de recurso 2: "
+#define MSJ_STOCK_REST_3 "Stock restante de recurso 3: "
 
 int main(){
 
@@ -48,43 +60,43 @@ int main(){
 	int contadorCiclos = 0;
 	int energiaConsumida = 0;
 
-	printf("\nIngrese energia: ");
+	printf("\n%s",MJS_INGRESE_ENERGIA);
 	scanf("%i", &energiaIngresada);
 	
 
 	if(energiaIngresada >= ENERGIA_MINIMA_REQUERIDA ){
 		printf("%s", MSJ_INGRESE_RECURSO_1);
 		scanf("%f", &cantRecurso1);
-		printf("Ingrese stock del recurso 2: ");
+		printf("%s", MSJ_INGRESE_RECURSO_2);
 		scanf("%f", &cantRecurso2);
-		printf("Ingrese stock del recurso 3: ");
+		printf("%s", MSJ_INGRESE_RECURSO_3);
 		scanf("%f", &cantRecurso3);
-		printf("\nIniciando produccion\n"); 
+		printf("\n%s\n", MSJ_INICIAR_PROD); 
 		for(int i = ENERGIA_MINIMA_REQUERIDA ; i <= energiaIngresada ; i = i+ENERGIA_MINIMA_REQUERIDA ){
 
 			if (cantRecurso1 >= CONSUMO_RECURSO_1 && cantRecurso2 >= CONSUMO_RECURSO_2 && cantRecurso3 >= CONSUMO_RECURSO_3)
 			{
-				printf("\nCiclo de produccion finalizado");
+				printf("\n%s", MSJ_CICLO_PROD);
 				cantRecurso1 = cantRecurso1 - CONSUMO_RECURSO_1;
 				cantRecurso2 = cantRecurso2 - CONSUMO_RECURSO_2;
 				cantRecurso3 = cantRecurso3 - CONSUMO_RECURSO_3;
 				contadorCiclos++;
 				energiaConsumida = i;
 			}else{
-				printf("\nCiclo de produccion interrumpido por falta de stock"); 
+				printf("\n%s", MSJ_FALTA_STOCK); 
 				i = energiaIngresada+1;
 			}	
 		}
 	}else{
-		printf("\nCantidad de energia insuficiente\n");
+		printf("\n%s\n", MSJ_ENERGIA_INSUFICIENTE);
 	}
 
 	printf("\n---------------Informe----------------");
-	printf("\nCantidad de productos producidos: %i", contadorCiclos*PRODUCTOS_POR_CICLO);
-	printf("\nEnergia restante: %i", energiaIngresada - energiaConsumida);
-	printf("\nStock restante de recurso 1: %.2f", cantRecurso1);
-	printf("\nStock restante de recurso 2: %.2f", cantRecurso2);
-	printf("\nStock restante de recurso 3: %.2f", cantRecurso3);
+	printf("\n%s%i", MSJ_PRODUCTOS_PRODUCIDOS, contadorCiclos*PRODUCTOS_POR_CICLO);
+	printf("\n%s%i", MSJ_ENERGIA_REST, energiaIngresada - energiaConsumida);
+	printf("\n%s%.2f", MSJ_STOCK_REST_1, cantRecurso1);
+	printf("\n%s%.2f", MSJ_STOCK_REST_2, cantRecurso2);
+	printf("\n%s%.2f", MSJ_STOCK_REST_3, cantRecurso3);
 
 	return 0;
 }
