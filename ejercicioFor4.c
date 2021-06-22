@@ -30,13 +30,14 @@
 */
 
 #include <stdio.h>
-#include <stdbool.h>
 
 const float CONSUMO_RECURSO_1 = 0.5;
 const float CONSUMO_RECURSO_2 = 2;
 const float CONSUMO_RECURSO_3 = 1.7;
 const int PRODUCTOS_POR_CICLO = 5;
 const int ENERGIA_MINIMA_REQUERIDA = 25;
+
+#define MSJ_INGRESE_RECURSO_1 "Ingrese stock del recurso 1: "
 
 int main(){
 
@@ -52,7 +53,7 @@ int main(){
 	
 
 	if(energiaIngresada >= ENERGIA_MINIMA_REQUERIDA ){
-		printf("Ingrese stock del recurso 1: ");
+		printf("%s", MSJ_INGRESE_RECURSO_1);
 		scanf("%f", &cantRecurso1);
 		printf("Ingrese stock del recurso 2: ");
 		scanf("%f", &cantRecurso2);
